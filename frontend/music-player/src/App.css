@@ -34,6 +34,13 @@ header {
   margin-top: 50px;
 }
 
+.container-box {
+  margin: auto;
+  width: 30%;
+  height: 300px;
+  background-color: aquamarine;
+}
+
 .player-container {
   display: flex;
   justify-content: center;
