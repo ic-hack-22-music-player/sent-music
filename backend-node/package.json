@@ -10,8 +10,11 @@
   "author": "IC Hack Team 22",
   "license": "ISC",
   "dependencies": {
+    "@magenta/music": "^1.23.1",
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "nodemon": "^2.0.15"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
