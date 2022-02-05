@@ -57,46 +57,19 @@ router.post('/makeMusic', (req, res, next) => {
 })
 
 router.post('/sendVoice', (req, res, next)=> {
-    function download(data, filename, type) {
-        var file = new Blob([data], {type: type});
-        if (window.navigator.msSaveOrOpenBlob) // IE10+
-            window.navigator.msSaveOrOpenBlob(file, filename);
-        else { // Others
-            var a = document.createElement("a"),
-                    url = URL.createObjectURL(file);
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(function() {
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);  
-            }, 0); 
+    let buf = Buffer.from(req.body.blob, 'base64');
+    fs.writeFile('test.webm', buf, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("SUCCESS");
         }
-    }
-    // res.set({"Access-Control-Allow-Origin": "*"});
-    console.log(req.body);
-    console.log(req.body.blobURL);
-    // const a = document.createElement('a');
-    // a.download = 'audio.webm';
-    // // a.href = URL.createObjectURL(recordedBlob);
-    // a.href = req.body.blobURL;
-    // a.addEventListener('click', (e) => {
-    //     setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
-    // });
-    // a.click();
-    // const file = new File(
-    //     req.body,
-    //     "test.webm",
-    //     {
-    //         type: req.body.type,
-    //         lastModified: new Date().getTime()
-    //     }
-    // )
+    });
     
-
-    res.end();
-    // console.log(JSON.parse(req.body));
+    console.log("PASS")
+    res.end(JSON.stringify({
+        msg: "SUCCESS"
+    }));
 })
 
 router.post('/sendResult', (req, res, next) => {

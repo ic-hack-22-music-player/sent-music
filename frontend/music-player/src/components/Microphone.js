@@ -23,29 +23,42 @@ export class Microphone extends React.Component {
     }
 
     onStop(recordedBlob) {
-        // console.log('recordedBlob is: ', recordedBlob);
-        // const a = document.createElement('a');
-        // a.download = 'audio.webm';
-        // // a.href = URL.createObjectURL(recordedBlob);
-        // a.href = recordedBlob.blobURL;
-        // a.addEventListener('click', (e) => {
-        //     setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
-        // });
-        // a.click();
-        fetch(serverURL+'/sendVoice', {
-            method: 'POST',
-            headers: {
-                'Access-Control-Allow-Origin':  'http://127.0.0.1:3000',
-                'Access-Control-Allow-Methods': 'POST',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(recordedBlob)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("SUCCESS", data);
-        })
+        console.log(recordedBlob);
+        const blobToBase64 = (blob) => {
+            return new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(blob);
+              reader.onloadend = function () {
+                resolve(reader.result.split(',')[1]);
+              };
+            });
+          };
+  
+        (async () => {
+            const b64 = await blobToBase64(recordedBlob.blob);
+            const jsonString = JSON.stringify({blob: b64});
+            console.log(jsonString);
+            console.log(recordedBlob);
+            fetch(serverURL+'/sendVoice', {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin':  'http://127.0.0.1:3000',
+                    'Access-Control-Allow-Methods': 'POST',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                    'Content-Type': 'application/json',
+                },
+                body: jsonString
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("SUCCESS", data);
+            }).catch(
+                (err) => {
+                    console.log(err);
+                }
+            )
+          })();
+        
 
     }
 
