@@ -37,15 +37,19 @@ export class Microphone extends React.Component {
     render() {
         return (
             <div>
-                <ReactMic
-                    record={this.state.record}
-                    className="sound-wave"
-                    onStop={this.onStop}
-                    onData={this.onData}
-                    strokeColor="#000000"
-                    backgroundColor="#FF4081" />
-                <button onClick={this.startRecording} type="button">Start</button>
-                <button onClick={this.stopRecording} type="button">Stop</button>
+                <div>
+                    <ReactMic
+                        record={this.state.record}
+                        className="sound-wave"
+                        onStop={this.onStop}
+                        onData={this.onData}
+                        strokeColor="white"
+                        backgroundColor="#9DE5B8" />
+                    <div>
+                        <button class="recordBtn" onClick={this.startRecording} type="button">Start</button>
+                        <button class="recordBtn" onClick={this.stopRecording} type="button">Stop</button>
+                    </div>
+                </div>
             </div>
         );
     }
