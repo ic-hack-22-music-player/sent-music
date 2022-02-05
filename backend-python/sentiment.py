@@ -29,5 +29,8 @@ def get_sentiment(text: str) -> Optional[int]:
     return -1 if neg_p > pos_p else 1
 
 
-def get_sample(sentiment: int):
-    path = random.choice(pos_midi) if sentiment == 1 else random.choice(neg_midi)
+def get_sample(text: str) -> Optional[str]:
+    sentiment = get_sentiment(text)
+    if sentiment is None:
+        return None
+    return random.choice(pos_midi) if sentiment == 1 else random.choice(neg_midi)
