@@ -15,7 +15,7 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "jade": "^1.11.0",
-    "nodemon": "^2.0.15",
+    "node-fetch": "2.0",
     "pug": "^3.0.2"
   },
   "proxy": "http://localhost:3001"
