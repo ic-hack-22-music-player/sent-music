@@ -1,6 +1,15 @@
 var createError = require('http-errors');
 const express = require('express');
 var path = require('path');
+const cors = require('cors');
+
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+
+
 // var db = require('mongoose');
 // db.connect("mongodb+srv://root:COMP3322@musicstore.q83qo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {useNewUrlParser: true,
 // useUnifiedTopology: true}, err => {
@@ -18,6 +27,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 var session = require('express-session');
 
+app.use(cors(corsOptions))
 app.use(session({secret:'ICHACK22'}));
 app.use(express.urlencoded({extended:false}));
 
