@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var fs = require('fs');
+let express = require('express');
+let router = express.Router();
+let fs = require('fs');
 const music_rnn = require('@magenta/music/node/music_rnn');
 const core = require('@magenta/music/node/core');
 

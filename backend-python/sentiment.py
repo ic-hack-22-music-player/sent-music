@@ -17,6 +17,7 @@ with open(VGMIDI_PATH + '/vgmidi_sent_train.csv', newline='') as f:
             else:
                 neg_midi.append(path)
 
+
 def get_sentiment(text: str) -> Optional[int]:
     r = requests.post('http://text-processing.com/api/sentiment/', data={'text': text})
     if r.status_code != 200:
