@@ -41,7 +41,7 @@ header {
 }
 
 .player-container {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
 
@@ -77,4 +77,29 @@ header {
 
 .recordBtn:hover {
   background: var(--cream);
+}
+
+.disc-container {
+  /* width: 100%; */
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  /* animation-play-state: paused; */
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+.spinning-disc {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

@@ -54,6 +54,7 @@ export class Microphone extends React.Component {
                 console.log("SUCCESS", data);
             })
           })();
+        // this.props.toggleRecord();
         
 
     }
@@ -70,8 +71,8 @@ export class Microphone extends React.Component {
                         strokeColor="#23465A"
                         backgroundColor="#DEF2F1" />
                     <div>
-                        <button class="recordBtn" onClick={this.startRecording} type="button"><i>Start</i></button>
-                        <button class="recordBtn" onClick={this.stopRecording} type="button"><i>Stop</i></button>
+                        <button className="recordBtn" onClick={this.startRecording} type="button">Start</button>
+                        <button className="recordBtn" onClick={this.stopRecording} type="button">Stop</button>
                     </div>
                 </div>
             </div>
