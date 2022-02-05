@@ -74,8 +74,8 @@ export class Microphone extends React.Component {
                         strokeColor="white"
                         backgroundColor="#9DE5B8" />
                     <div>
-                        <button class="recordBtn" onClick={this.startRecording} type="button">Start</button>
-                        <button class="recordBtn" onClick={this.stopRecording} type="button">Stop</button>
+                        <button className="recordBtn" onClick={this.startRecording} type="button">Start</button>
+                        <button className="recordBtn" onClick={this.stopRecording} type="button">Stop</button>
                     </div>
                 </div>
             </div>
