@@ -1,0 +1,17 @@
+{
+  "name": "backend-node",
+  "version": "1.0.0",
+  "description": "IC Hack node backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "IC Hack Team 22",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
