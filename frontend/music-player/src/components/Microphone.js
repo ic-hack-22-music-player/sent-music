@@ -71,11 +71,11 @@ export class Microphone extends React.Component {
                         className="sound-wave"
                         onStop={this.onStop}
                         onData={this.onData}
-                        strokeColor="white"
-                        backgroundColor="#9DE5B8" />
+                        strokeColor="#23465A"
+                        backgroundColor="#DEF2F1" />
                     <div>
-                        <button class="recordBtn" onClick={this.startRecording} type="button">Start</button>
-                        <button class="recordBtn" onClick={this.stopRecording} type="button">Stop</button>
+                        <button class="recordBtn" onClick={this.startRecording} type="button"><i>Start</i></button>
+                        <button class="recordBtn" onClick={this.stopRecording} type="button"><i>Stop</i></button>
                     </div>
                 </div>
             </div>

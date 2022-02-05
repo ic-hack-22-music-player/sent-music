@@ -14,7 +14,7 @@ function App() {
     <div className="app">
       <div className="container-box">
         <Header title={"Music Player 🎼"}></Header>
-        <h1>How are you feeling today?</h1>
+        <h1>How are you <b><i>feeling</i></b> today?</h1>
         <h2>Press start and say it out loud!</h2>
         <Microphone />
         <MidiAudio audio={audio} />
