@@ -52,11 +52,7 @@ export class Microphone extends React.Component {
             .then(response => response.json())
             .then(data => {
                 console.log("SUCCESS", data);
-            }).catch(
-                (err) => {
-                    console.log(err);
-                }
-            )
+            })
           })();
         
 

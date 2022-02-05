@@ -1,6 +1,8 @@
 let express = require('express');
 let router = express.Router();
 let fs = require('fs');
+
+const flaskURL = 'http://127.0.0.1:5000'
 const music_rnn = require('@magenta/music/node/music_rnn');
 const core = require('@magenta/music/node/core');
 
@@ -58,18 +60,32 @@ router.post('/makeMusic', (req, res, next) => {
 
 router.post('/sendVoice', (req, res, next)=> {
     let buf = Buffer.from(req.body.blob, 'base64');
-    fs.writeFile('test.webm', buf, (err) => {
+    fs.writeFile('../backend-python/speech.webm', buf, (err) => {
         if (err) {
             console.log(err);
+            res.end(JSON.stringify({
+                msg: err
+            }))
         } else {
             console.log("SUCCESS");
+            fetch(flaskURL + '/sentiment')
+                .then(
+                    res => res.json()
+                ).then(
+                    data => {
+                        if (data.msg==="success") {
+                            console.log("ANOTHER SUCCESS");
+                            console.log(data.sample_path);
+                        } else {
+                            console.log(data.msg);
+                        }
+                    }
+                )
         }
+        res.end(JSON.stringify({
+            msg: "SUCCESS"
+        }));
     });
-    
-    console.log("PASS")
-    res.end(JSON.stringify({
-        msg: "SUCCESS"
-    }));
 })
 
 router.post('/sendResult', (req, res, next) => {
