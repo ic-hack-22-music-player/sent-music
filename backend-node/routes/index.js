@@ -35,17 +35,25 @@ const TWINKLE_TWINKLE = {
 router.post('/makeMusic', (req, res) => {
     let sample_path = req.body.sample_path
     fs.readFile(sample_path, function (err, data) {
-        console.log(data)
         let ns = core.midiToSequenceProto(data)
-        // const qns = core.sequences.quantizeNoteSequence(ns, 4)
-        const qns = core.sequences.quantizeNoteSequence(TWINKLE_TWINKLE, 4);
+        const qns = core.sequences.quantizeNoteSequence(ns, 4)
+        qns.notes.forEach(n => {
+            if (n.pitch <= 50) {
+                n.pitch = 51
+            }
+            if (n.pitch >= 80) {
+                n.pitch = 79
+            }
+        })
+        // const qns = core.sequences.quantizeNoteSequence(TWINKLE_TWINKLE, 4);
 
         model
-            .continueSequence(qns, 50, 1.5)
+            .continueSequence(qns, 100, 1.2)
             .then((sample) => {
+                sample.notes.forEach(n => n.velocity = 100)
+                console.log(sample)
                 let converted = core.sequenceProtoToMidi(sample)
                 console.log(converted.length)
-                console.log(converted);
                 let bytes = Buffer.alloc(converted.length);
                 for (let i = 0; i < bytes.length; i++) {
                     bytes[i] = converted[i];

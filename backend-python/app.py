@@ -29,9 +29,9 @@ def process_audio_and_sentiment():
         data = {'msg': 'File speech.webm does not exist'}
         return jsonify(data), 200
 
-    sentences = transcribe_streaming(audio_file)
-    sample_path = get_sample(sentences[0])
-    # sample_path = 'phrases/Final_Fantasy_7_BattleTheme_3'
+    # sentences = transcribe_streaming(audio_file)
+    # sample_path = get_sample(sentences[0])
+    sample_path = 'phrases/Final_Fantasy_7_BattleTheme_3'
     sample_path = '../../music-sentneuron/vgmidi/labelled/' + sample_path + '.mid'
     print(f'sample path: {sample_path}')
 
