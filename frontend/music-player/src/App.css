@@ -114,3 +114,8 @@ header {
   padding-bottom: 100px;
   cursor: pointer;
 }
+
+.tail-spin {
+  display: flex;
+  justify-content: center;
+}

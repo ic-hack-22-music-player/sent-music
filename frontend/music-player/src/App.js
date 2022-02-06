@@ -88,7 +88,7 @@ function App() {
         </MouseParallaxChild>
       </MouseParallaxContainer>
       {showRecord && <Microphone onToggle={toggleRecord} changeAudio={changeAudio} />}
-      {loading && <TailSpin color="#00BFFF" height={80} width={80} />}
+      {loading && <div className='tail-spin'><TailSpin color="#00BFFF" height={80} width={80}/></div>}
       {showPlayer && <MidiAudio
         audio={audio}
         disc={disc}
