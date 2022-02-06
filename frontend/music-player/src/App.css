@@ -67,7 +67,7 @@ header {
   font-size: 25px;
   margin: 4px 30px;
   text-align: center !important;
-  
+
   border-style: outset;
   border-color: var(--light) var(--purple) var(--purple) var(--light);
   border-width: 2px;
@@ -108,7 +108,7 @@ header {
   
 }
 
-.back-img {
+.back-img, .save-btn {
   width: 75px;
   padding-top: 50px;
   padding-bottom: 100px;
