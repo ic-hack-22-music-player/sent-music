@@ -23,12 +23,15 @@ def center_prop(img_file: str):
 
 
 def generate_img(img_file: str):
+    seed = int(str(int(time.time()))[-7:])
+    random.seed(seed)
+    print(f'Random seed {seed}')
     f1 = lambda x, y: random.uniform(-1, 1) * x ** 2 - math.sin(y ** 3) + abs(x - y)
     f2 = lambda x, y: random.uniform(-1, 1) * y ** 3 - math.cos(x ** 2) + y
     g = GenerativeImage(f1, f2)
-    seed = int(time.time() / 1000)
     g.generate(seed=seed)
     use_polar = random.randint(0, 1)
+    print(f'use polar: {use_polar}')
     if use_polar == 1:
         g.plot(projection=Projection.POLAR)
     else:

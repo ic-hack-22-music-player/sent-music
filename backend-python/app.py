@@ -43,6 +43,7 @@ def process_audio_and_sentiment():
         thread = multiprocessing.Process(target=gen_cover_art)
         thread.start()
         thread.join()
+        print('art generated')
         data = {'sample_path': sample_path, 'msg': 'success', 'secondary_msg': 'got sample, generated cover art'}
 
     return jsonify(data), 200

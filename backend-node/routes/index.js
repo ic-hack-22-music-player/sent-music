@@ -2,7 +2,6 @@ let express = require('express');
 let router = express.Router();
 let fetch = require('node-fetch');
 let fs = require('fs');
-let fetch = require('node-fetch')
 
 
 const flaskURL = 'http://127.0.0.1:5000'

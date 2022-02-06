@@ -35,21 +35,15 @@ function App() {
   }
 
   const toggleRecord = () => {
-    loadspin();
+    setLoading(!loading);
+    console.log("Loading " + loading);
     setShowRecord(!showRecord);
     console.log("Spin starts");
   }
 
-
-  const loadspin = () => {
-    // console.log("Spin start");
-    setLoading(!loading);
-    console.log("Loading " + loading);
-    setTimeout(() => {
-      setLoading(loading);
-      console.log("Loading " + loading);
+  const togglePlayer = () => {
+      setLoading(!loading);
       setShowPlayer(!showPlayer);
-    }, 5000);
   }
 
   return (
@@ -87,11 +81,11 @@ function App() {
           <Subtitle subtitle={showRecord ? "Press start and say it out loud!" : "Enjoy your song!"} />
         </MouseParallaxChild>
       </MouseParallaxContainer>
-      {showRecord && <Microphone onToggle={toggleRecord} changeAudio={changeAudio} />}
+      {showRecord && <Microphone onToggle={toggleRecord} changeAudio={changeAudio} onTogglePlayer={togglePlayer} />}
       {loading && <div className='tail-spin'><TailSpin color="#00BFFF" height={80} width={80}/></div>}
       {showPlayer && <MidiAudio
-        audio={audio}
-        disc={disc}
+        audio={require('./generated.mid')}
+        disc={require('./album.jpg')}
       />}
       {showPlayer && <Back onClick={resetState} />}
     </div >

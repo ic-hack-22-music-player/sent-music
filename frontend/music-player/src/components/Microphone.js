@@ -61,8 +61,9 @@ export class Microphone extends React.Component {
             })
             .then(response => response.json())
             .then(data => {
-                this.changeAudio("./twinkle-twinkle-little-star");
+                this.changeAudio(require("../generated.mid"));
                 console.log("SUCCESS", data);
+                this.props.onTogglePlayer();
             })
           })();
         
