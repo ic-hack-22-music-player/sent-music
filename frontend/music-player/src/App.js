@@ -8,6 +8,7 @@ import Microphone from './components/Microphone';
 import Subtitle from './components/Subtitle';
 import Back from './components/Back';
 import 'html-midi-player';
+import { MouseParallaxContainer, MouseParallaxChild } from "react-parallax-mouse";
 import { useState } from 'react'
 import { TailSpin } from 'react-loader-spinner';
 
@@ -64,9 +65,8 @@ function App() {
           disc={disc}
         />}
         {showPlayer && <Back onClick={resetState}/>}
-        {/* <img src={discImg} alt="" /> */}
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
