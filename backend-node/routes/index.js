@@ -62,10 +62,10 @@ router.post('/makeMusic', (req, res) => {
                 fs.writeFile("../frontend/music-player/src/generated.mid", bytes, "binary", (err) => {
                     if (err) {
                         console.log(err);
-                        res.end(JSON.stringify({msg: 'failed to generate'}))
+                        res.end(JSON.stringify({msg: 'failed to generate midi'}))
                     } else {
                         console.log("YESSS");
-                        res.end(JSON.stringify({msg: 'generated'}))
+                        res.end(JSON.stringify({msg: 'generated midi'}))
                     }
                 })
             });
@@ -115,7 +115,8 @@ router.post('/sendVoice', (req, res, next) => {
                             }).then(res => res.json()).then(data => {
                                 console.log(data);
                                 res.end(JSON.stringify({
-                                        msg: "SUCCESS, maybe"
+                                        msg: 'SUCCESS',
+                                        secondary_msg: 'Got sample, saved midi, saved cover art'
                                     }
                                 ));
                             })

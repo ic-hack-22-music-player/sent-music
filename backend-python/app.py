@@ -1,6 +1,7 @@
+import multiprocessing
+from os.path import exists
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
-from os.path import exists
 
 import sys
 
@@ -8,6 +9,7 @@ sys.path.insert(0, './')
 
 from speech2txt import transcribe_streaming
 from sentiment import get_sample
+from cover_art import gen_cover_art
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -36,7 +38,19 @@ def process_audio_and_sentiment():
     print(f'sample path: {sample_path}')
 
     if sample_path is None:
-        data = {'msg': 'Sth went wrong'}
+        data = {'msg': 'Sth went wrong when getting samplen'}
     else:
-        data = {'sample_path': sample_path, 'msg': 'success'}
+        thread = multiprocessing.Process(target=gen_cover_art)
+        thread.start()
+        thread.join()
+        data = {'sample_path': sample_path, 'msg': 'success', 'secondary_msg': 'got sample, generated cover art'}
+
     return jsonify(data), 200
+
+
+@app.route('/gen_cover_art')
+def generate_cover_art():
+    thread = multiprocessing.Process(target=gen_cover_art)
+    thread.start()
+    thread.join()
+    return jsonify({'msg': 'success'})
