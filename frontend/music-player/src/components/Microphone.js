@@ -8,6 +8,12 @@ export class Microphone extends React.Component {
         this.state = {
             record: false
         }
+        this.onStop = this.onStop.bind(this);
+    }
+
+    changeAudio = (newAudio) => {
+        console.log("1st changeAudio is called");
+        this.props.changeAudio(newAudio);
     }
 
     startRecording = () => {
@@ -16,6 +22,8 @@ export class Microphone extends React.Component {
 
     stopRecording = () => {
         this.setState({ record: false });
+        
+        console.log("This");
     }
 
     onData(recordedBlob) {
@@ -23,7 +31,9 @@ export class Microphone extends React.Component {
     }
 
     onStop(recordedBlob) {
+        this.props.onToggle();
         console.log(recordedBlob);
+        
         const blobToBase64 = (blob) => {
             return new Promise((resolve) => {
               const reader = new FileReader();
@@ -51,10 +61,10 @@ export class Microphone extends React.Component {
             })
             .then(response => response.json())
             .then(data => {
+                this.changeAudio("./twinkle-twinkle-little-star");
                 console.log("SUCCESS", data);
             })
           })();
-        // this.props.toggleRecord();
         
 
     }
