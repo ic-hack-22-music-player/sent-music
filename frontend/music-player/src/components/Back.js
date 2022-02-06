@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Back = ({onClick}) => {
+const Back = ({ onClick }) => {
   return (
-    <div className='back'>
-        <img onClick={onClick} className="back-img" src={require("../home.png")} alt="" />
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'  }} className='back'>
+      <h1 onClick={onClick} className="back-img">🏠</h1>
     </div>
   );
 };
