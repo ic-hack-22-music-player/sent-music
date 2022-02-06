@@ -20,7 +20,7 @@ function App() {
   const [showPlayer, setShowPlayer] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  
+
   const resetState = () => {
     setAudio(test);
     setDisc(discImg);
@@ -54,18 +54,46 @@ function App() {
 
   return (
     <div className="app">
-      <div className="container-box">
-        <Header title={"Music Player 🎼"}></Header>
-        {showRecord && <h1>How are you feeling today?</h1>}
-        <Subtitle subtitle={showRecord? "Press start and say it out loud!" : "Enjoy your song!"}/>
-        {showRecord && <Microphone onToggle={toggleRecord} changeAudio={changeAudio} />}
-        {loading && <TailSpin color="#00BFFF" height={80} width={80}/>}
-        {showPlayer && <MidiAudio 
-          audio={audio} 
-          disc={disc}
-        />}
-        {showPlayer && <Back onClick={resetState}/>}
-      </div >
+      <MouseParallaxContainer>
+        <MouseParallaxChild
+          factorX={0.03}
+          factorY={0.1}
+          updateStyles={{
+            backgroundPositionY: "100%",
+            backgroundPositionX: "100%",
+            // transform: "scale(1.2)",
+            position: "absolute",
+            filter: "blur(4px) brightness(20%)",
+            backgroundSize: "auto",
+            backgroundRepeat: "repeat",
+            width: "100%",
+            height: "100%",
+            backfaceVisibility: "hidden"
+          }}
+        />
+        <MouseParallaxChild
+          factorX={0.03}
+          factorY={0.1}>
+          <Header title={"mood jam 🎼"}></Header>
+        </MouseParallaxChild>
+        <MouseParallaxChild
+          factorX={0.02}
+          factorY={0.05}>
+          {showRecord && <h1>How are you <b><i>feeling</i></b> today?</h1>}
+        </MouseParallaxChild>
+        <MouseParallaxChild
+          factorX={0.01}
+          factorY={0.01}>
+          <Subtitle subtitle={showRecord ? "Press start and say it out loud!" : "Enjoy your song!"} />
+        </MouseParallaxChild>
+      </MouseParallaxContainer>
+      {showRecord && <Microphone onToggle={toggleRecord} changeAudio={changeAudio} />}
+      {loading && <TailSpin color="#00BFFF" height={80} width={80} />}
+      {showPlayer && <MidiAudio
+        audio={audio}
+        disc={disc}
+      />}
+      {showPlayer && <Back onClick={resetState} />}
     </div >
   );
 }
