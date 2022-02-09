@@ -31,6 +31,8 @@ def process_audio_and_sentiment():
         data = {'msg': 'File speech.webm does not exist'}
         return jsonify(data), 200
 
+    # Use google speech to text　API
+    # Google API might charge money, so use the dummy sample_path for testing purpose
     # sentences = transcribe_streaming(audio_file)
     # sample_path = get_sample(sentences[0])
     sample_path = 'phrases/Final_Fantasy_7_BattleTheme_3'

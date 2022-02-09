@@ -26,6 +26,8 @@ def get_sentiment(text: str) -> Optional[int]:
     neg_p = r['probability']['neg']
     pos_p = r['probability']['pos']
 
+    print(f'Sentiment: {-1 if neg_p > pos_p else 1}')
+
     return -1 if neg_p > pos_p else 1
 
 

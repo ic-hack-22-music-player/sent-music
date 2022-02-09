@@ -37,6 +37,7 @@ router.post('/makeMusic', (req, res) => {
     fs.readFile(sample_path, function (err, data) {
         let ns = core.midiToSequenceProto(data)
         const qns = core.sequences.quantizeNoteSequence(ns, 4)
+        qns.tempos = [{qpm: 120}]
         qns.notes.forEach(n => {
             if (n.pitch <= 50) {
                 n.pitch = 51
